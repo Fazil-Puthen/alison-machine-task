@@ -1,3 +1,4 @@
+import 'package:alison/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class mainimage extends StatelessWidget {
@@ -9,7 +10,7 @@ class mainimage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Stack(children:[Image.asset('assets/alison main.jpg',fit: BoxFit.cover,),
+      child: Stack(children:[Image.network(banner,fit: BoxFit.cover,),
       Positioned(right: 10,
       bottom: 20,
         child: Container(

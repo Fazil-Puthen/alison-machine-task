@@ -3,12 +3,12 @@ import 'package:alison/presentation/homescreen/widgets/appbar.dart';
 import 'package:alison/presentation/homescreen/widgets/category.dart';
 import 'package:alison/presentation/homescreen/widgets/mainimage.dart';
 import 'package:alison/presentation/homescreen/widgets/ourbrands.dart';
-import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
+import 'package:alison/presentation/homescreen/widgets/slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+ const   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           slivers: [
 
             //main image
-            mainimage(),
+            const mainimage(),
             
             gap,
             const category(name: 'Our Brands',),
@@ -34,25 +34,37 @@ class HomeScreen extends StatelessWidget {
             const category(name: 'Our Products',),
             gap,
             
+            const SliderImages(),
+
+            
+            const category(name: 'Suggested For You',),
+            gap,
+
+            OurBrands(screenwidth: screenwidth),
+            gap,
+            gap,
+
             SliverToBoxAdapter(
-        child: FanCarouselImageSlider.sliderType1(
-               imagesLink: sample,
-               isAssets: true,
-               autoPlay: false,
-               imageRadius: 20,
-               slideViewportFraction: 0.5,
-               expandImageHeight: 200,
-               expandedImageFitMode: BoxFit.fill,
-               showIndicator: false,
-               sliderHeight: 400,),
-      ),
+              child: Transform.rotate(angle: 0.09,
+              child: Container(
+                width: screenwidth,
+                height: 50,
+                color: Colors.purple,
+              ),),
+            ),
+            gap,
 
           ],
          ),
+         bottomNavigationBar: BottomNavigationBar(
+          fixedColor: Colors.black,
+          items:bottomlist
+          )
       ),
     );
   }
 }
+
 
 
 
