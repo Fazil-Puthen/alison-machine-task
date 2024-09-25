@@ -1,17 +1,52 @@
+import 'package:alison/constants/constants.dart';
+import 'package:alison/presentation/homescreen/widgets/appbar.dart';
+import 'package:alison/presentation/homescreen/widgets/category.dart';
+import 'package:alison/presentation/homescreen/widgets/mainimage.dart';
+import 'package:alison/presentation/homescreen/widgets/ourbrands.dart';
+import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    final screenwidth=MediaQuery.of(context).size.width;
+    return  SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(preferredSize: Size.fromHeight(100),
+        appBar: const PreferredSize(preferredSize: Size.fromHeight(100),
          child:appbar()),
          body: CustomScrollView(
           slivers: [
+
+            //main image
+            mainimage(),
             
+            gap,
+            const category(name: 'Our Brands',),
+            gap,
+
+            //our brands
+            OurBrands(screenwidth: screenwidth),
+
+            gap,
+            const category(name: 'Our Products',),
+            gap,
+            
+            SliverToBoxAdapter(
+        child: FanCarouselImageSlider.sliderType1(
+               imagesLink: sample,
+               isAssets: true,
+               autoPlay: false,
+               imageRadius: 20,
+               slideViewportFraction: 0.5,
+               expandImageHeight: 200,
+               expandedImageFitMode: BoxFit.fill,
+               showIndicator: false,
+               sliderHeight: 400,),
+      ),
+
           ],
          ),
       ),
@@ -19,36 +54,5 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-//app bar
-class appbar extends StatelessWidget {
-  const appbar({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-     margin: EdgeInsets.symmetric(horizontal: 20),
-     height: 80,
-     child: Center(
-       child: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: [
-          SizedBox
-          (child: Image.asset('assets/original_file_home.jpg'),
-          width: 100,height: 100,),
-         const  Row(
-           children: [
-             Icon(Icons.search,size: 30,),
-             SizedBox(width: 10,),
-             Icon(Icons.favorite_border,size: 30,),
-             SizedBox(width: 10,),
-             Icon(Icons.shopping_bag_outlined,size: 30,)
-           ],
-          )
-         ],
-       ),
-     ),
-    );
-  }
-}
+
