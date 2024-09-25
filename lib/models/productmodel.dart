@@ -1,27 +1,25 @@
-class MediaImage {
+class Product {
+  final int productId;
+  final String slug;
+  final String name;
+  final String price;
   final String image;
-  final String title;
-  final String? price; 
 
-  MediaImage({
+  Product({
+    required this.productId,
+    required this.slug,
+    required this.name,
+    required this.price,
     required this.image,
-    required this.title,
-    this.price,
   });
 
-  factory MediaImage.fromProductJson(Map<String, dynamic> json) {
-    return MediaImage(
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      productId: json['productId'],
+      slug: json['slug'],
+      name: json['name'],
+      price: json['price'],
       image: json['image'],
-      title: json['name'], 
-      price: json['price'], 
-    );
-  }
-
-  factory MediaImage.fromBannerJson(Map<String, dynamic> json) {
-    return MediaImage(
-      image: json['image'],
-      title: json['title'], 
-      price: null, 
     );
   }
 }

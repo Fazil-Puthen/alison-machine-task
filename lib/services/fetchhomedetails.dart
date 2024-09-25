@@ -7,7 +7,7 @@ class ApiService {
   final String token = "VCqnyucUlRM7BxsAkhOtFQS3Fg6dhda5bOtgYKlb";
   final String id = "epV";
 
-  Future<Either<String, List<dynamic>>> fetchHomeDetails() async {
+  Future<Either<String, Map<String, dynamic>>> fetchHomeDetails() async {
     final String url = "$baseUrl/home?id=$id&token=$token";
 
     try {
@@ -15,16 +15,11 @@ class ApiService {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        print("Home Page Details: $data");
-        
-        // Return the data as a list
-        return Right(data['data']); // Assuming 'data' is the key for your required list
+        return Right(data); // Return raw data
       } else {
-        print("Failed to load data: ${response.statusCode}");
         return Left("Failed to load data: ${response.statusCode}");
       }
     } catch (e) {
-      print("Error occurred: $e");
       return Left("Error occurred: $e");
     }
   }
